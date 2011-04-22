@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block css %}
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0px; padding: 0px }
+  header {
+  	z-index: 2;
+  }
+  #map-canvas { 
+    height: 100%; 
+    width: 100%; 
+    padding: 0;
+    }
+    
+	.page-map {
+		width: 100%;
+		height: 100%;
+	}
+</style>
+{% endblock %}
+
+{% block page_class %}page-map{% endblock %}
+
+{% block main_content %}
+  <div id="map-canvas" data-role="content" data-theme="b" data-fullscreen="true"></div>
+{% endblock %}
+
+{% block js %}
+
+
+
+<script type="text/javascript">
+
+	$('.page-map').live("pagecreate", function() {
+		var markers = [];
+		var racks = [];
+		var iterator = 0;
+		
+		var myOptions = {
+	      zoom: 14,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP,
+	      center: new google.maps.LatLng(59.92268, 10.73866)
+	    };
+	    
+	    var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+	    
+	    {% for rack in racks %}
+	    
+	    racks[{{ forloop.counter0 }}] = [
+	    		{{ rack.id }},
+	    		"{{ rack.description }}",
+	    		new google.maps.LatLng({{ rack.lat }}, {{ rack.lng }}),
+	    ];
+	    	
+	    {% endfor %}
+	
+		
+		for (var i = 0, l = racks.length; i < l; i++) {
+			markers[i] = new google.maps.Marker({
+			  id: racks[iterator][0],
+		      position: racks[iterator][2],
+		      map: map,
+		      title: racks[iterator][1]
+		    });
+		    
+		    google.maps.event.addListener(markers[i], 'click', function() {
+		      $.mobile.changePage("" + this.id, "slideup");
+		    });
+		    
+		    iterator++;
+		}
+	});
+	
+    		
+    	
+    
+    
+    
+    
+    /*
+    
+    geoLocation();
+    
+    function geoLocation() {
+	    // Try W3C Geolocation (Preferred)
+		  if(navigator.geolocation) {
+		    browserSupportFlag = true;
+		    navigator.geolocation.getCurrentPosition(function(position) {
+		      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+		      map.setCenter(initialLocation);
+		    }, function() {
+		      handleNoGeolocation(browserSupportFlag);
+		    });
+		  // Try Google Gears Geolocation
+		  } else if (google.gears) {
+		    browserSupportFlag = true;
+		    var geo = google.gears.factory.create('beta.geolocation');
+		    geo.getCurrentPosition(function(position) {
+		      initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+		      map.setCenter(initialLocation);
+		    }, function() {
+		      handleNoGeoLocation(browserSupportFlag);
+		    });
+		  // Browser doesn't support Geolocation
+		  } else {
+		    browserSupportFlag = false;
+		    handleNoGeolocation(browserSupportFlag);
+		  }
+	  }
+	  
+	  function handleNoGeolocation(errorFlag) {
+	    if (errorFlag == true) {
+	      alert("Geolocation service failed.");
+	      initialLocation = newyork;
+	    } else {
+	      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+	      initialLocation = siberia;
+	    }
+	    map.setCenter(initialLocation);
+	  }
+  	*/
+  
+</script>
+{% endblock %}

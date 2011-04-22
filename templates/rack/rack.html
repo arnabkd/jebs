@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header %}
+	<h1>{{ rack.description }}</h1>
+	<a href="#" data-icon="star" class="ui-btn-right">Favoritt</a>
+{% endblock %}
+
+{% block content %}
+
+	{% if rack %}
+  		<dl>
+  			<dt>Ledige sykler</dt>
+  			<dd>{{ rack.ready_bikes }}</dd>
+  			<dt>Ledige plasser</dt>
+  			<dd>{{ rack.empty_locks }}</dd>
+  		</dl>
+	{% endif %}
+
+{% endblock %}

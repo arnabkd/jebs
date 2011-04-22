@@ -1,0 +1,10 @@
+{% if racks %}
+	<h1>Racks</h1>
+	<ul>
+	{% for rack in racks %}
+		<li>{{ rack.description }}</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	wtf
+{% endif %}
