@@ -1,9 +1,16 @@
-= Bysykkel i Oslo
+# Bysykkel i Oslo
 
-== Description
+## Description
 
-Get a live overview of available city bikes in Oslo on your phone, using the ClearChannel XML api.
+Get a live overview of available city bikes in Oslo on your phone, using the ClearChannel XML api. 
 
-== Copyright
+## Disclaimer
+My first Django app and github project :)
+
+## Inspiration
+* http://gitorious.org/bysyklist
+* https://github.com/espen/bysykkel/
+
+## Copyright
 
 Copyright 2011 Jon Espen Kvisler. For license information, see LICENSE
