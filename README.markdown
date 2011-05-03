@@ -5,7 +5,7 @@
 Get a live overview of available city bikes in Oslo on your phone, using the ClearChannel XML api. 
 
 ## Disclaimer
-My first Django app and github project :)
+My first Django and github project :)
 
 ## Inspiration
 * http://gitorious.org/bysyklist

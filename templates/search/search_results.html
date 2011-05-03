@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if found_entries %}
+		{% for entry in found_entries %}
+			{{ entry.description }}
+		{% endfor %}
+	
+	{% endif %}
+{% endblock %}
