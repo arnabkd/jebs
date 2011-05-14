@@ -29,10 +29,8 @@ def update_static_racks(request):
 	Rack.objects.all().delete()
 	for rack_station in racks:
 		# 500 and over are for testing?
-		if int(rack_station.text) < 2:
-		
+		if int(rack_station.text) < 10:
 			rack = parse_rack(int(rack_station.text))
-			
 			Rack(id = int(rack_station.text), description = rack["description"], lat = rack["lat"], lng = rack["lng"]).save()
 	return direct_to_template(request, 'static_racks/index.html', {'racks': Rack.objects.all()})
 

@@ -4,10 +4,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^$', 'bysykkel.views.index'),
-	url(r'^(?P<rack_id>\d+)/$', 'bysykkel.views.detail'),
-	url(r'^update/', 'bysykkel.views.update_static_racks'),
-	url(r'^search/', 'bysykkel.views.search'),
+	url(r'^$', 'bysykkel.views.index', name='home'),
+	url(r'^(?P<rack_id>\d+)/$', 'bysykkel.views.detail', name='rack'),
+	url(r'^update/', 'bysykkel.views.update_static_racks', name='update_rack'),
+	url(r'^search/', 'bysykkel.views.search', name='search'),
     # Examples:
     # url(r'^$', 'jebs.views.home', name='home'),
     # url(r'^jebs/', include('jebs.foo.urls')),
